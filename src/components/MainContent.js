@@ -1,4 +1,5 @@
 import {Todo} from '../components/Todo';
+import {useState} from 'react';
 
 function MainContent (props) {
     const todos = props.data.map((item) => {
@@ -9,56 +10,34 @@ function MainContent (props) {
             />
         )
     });
-    /* return (
-        <div className="todos">
-            <div className="todo-title">To do list</div>
-            <div className="todo-items">
-                <div className="todo-item">
-                    <div className="todo-first-row">
-                        <input type="checkbox" className="checkitem" name="checkitem"></input>
-                        <div className="todo-item-title">{props.data[0].title}</div>
-                        <button className="edit-item"><img src={editlogo} alt='edit item'></img></button>
-                        <button className="delete-item"><img src={deletelogo} alt='delete item'></img></button>
-                    </div>
-                    <div className='todo-second-row'>
-                        <div className='todo-description'>{props.data[0].description}</div>
-                        <div className='todo-date'>{props.data[0].date}</div>
-                    </div>
-                </div>
-            </div>
 
-            <div className='form-container'>
-                <form>
-                    <input type='text' name='title' id='user-task-title' placeholder='Task' />
-                    <input type="text" name="description" id="user-task-description" placeholder="Description" />
-                    <label for="date">Due date</label>
-                    <input type="date" name="date" id="user-duedate" />
-                    <input type="button" id="submit-task" class="submit-task-btn" value="Add" />
-                </form>
-            </div>
+    const [formVisibility, setFormVisibility] = useState(false);
 
-            <div className="todo-buttons">
-                <button className="add-task">Add Task</button>
-            </div>
-    </div>
-    )
-} */
+    function toggleForm () {
+        setFormVisibility(prev => !prev)
+    }
+
     return (
         <div className="todos">
         <div className="todo-title">To do list</div>
+        <div className="todo-items">
         {todos}
-        <div className='form-container'>
-            <form>
-                <input type='text' name='title' id='user-task-title' placeholder='Task' />
-                <input type="text" name="description" id="user-task-description" placeholder="Description" />
-                <label htmlFor="date">Due date</label>
-                <input type="date" name="date" id="user-duedate" />
-                <input type="button" id="submit-task" class="submit-task-btn" value="Add" />
-            </form>
         </div>
 
+        { formVisibility &&
+        <div className='form-container'>
+            <form>
+                <input type='text' name='title' id='user-task-title' placeholder='Task' onChange={props.changeForm} />
+                <input type="text" name="description" id="user-task-description" placeholder="Description" onChange={props.changeForm}/>
+                <label htmlFor="date">Due date</label>
+                <input type="date" name="date" id="user-duedate" onChange={props.changeForm}/>
+                <button id="submit-task" className="submit-task-btn" onSubmit={props.submitForm}>Submit</button>
+            </form>
+        </div>
+        }
+
         <div className="todo-buttons">
-            <button className="add-task">Add Task</button>
+            <button className="add-task" onClick={toggleForm}>{formVisibility ? 'Close form' : 'Add Task'}</button>
         </div>
     </div>
 

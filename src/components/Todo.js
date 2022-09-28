@@ -4,7 +4,6 @@ import deletelogo from '../001-bin.png';
 function Todo (props) {
     return (
         <div>
-        <div className="todo-items">
             <div className="todo-item">
                 <div className="todo-first-row">
                     <input type="checkbox" className="checkitem" name="checkitem"></input>
@@ -17,7 +16,6 @@ function Todo (props) {
                     <div className='todo-date'>{props.date}</div>
                 </div>
             </div>
-        </div>
         </div>
     )
 }

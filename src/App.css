@@ -70,7 +70,7 @@ body{
     display: flex;
     flex-direction: column;
     overflow: scroll;
-    gap: 7px;
+    gap: 10px;
 
 }
 .todo-item{
@@ -169,7 +169,8 @@ p{
     margin: 5px;
 }
 
-form input{
+form input,
+form button{
     border-radius: 20px;
     border:none;
     padding: 5px;
