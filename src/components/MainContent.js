@@ -2,6 +2,7 @@ import {Todo} from '../components/Todo';
 import {useState} from 'react';
 
 function MainContent (props) {
+    //loop over Apps state to render all todo items
     const todos = props.data.map((item) => {
         return (
             <Todo 
@@ -11,6 +12,7 @@ function MainContent (props) {
         )
     });
 
+    //use state to keep track of the form visibility
     const [formVisibility, setFormVisibility] = useState(false);
 
     function toggleForm () {

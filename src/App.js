@@ -22,6 +22,7 @@ function App() {
     }
 ]);
 
+//use state to keep track of form data to later add it to the formData array
 const [formData, setFormData] = useState(
   {
     title: '',
@@ -31,7 +32,7 @@ const [formData, setFormData] = useState(
   }
 )
 
-
+//save form data to a state
 function handleChange (event) {
   const {name, value} = event.target;
   setFormData(prevData => {
@@ -41,6 +42,7 @@ function handleChange (event) {
     }
   })
 }
+
 
 function handleSubmit (event) {
   event.preventDefault()
