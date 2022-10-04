@@ -2,19 +2,20 @@ import './App.css';
 import {Sidebar} from './components/Sidebar'
 import {MainContent} from './components/MainContent'
 import {useState} from 'react';
+import uniqid from 'uniqid';
 
 function App() {
 
   const [todoData, setTodoData] = useState([
     {
-      id: 1,
+      id: uniqid(),
       title: 'Study',
       description: 'Continue learning',
       date: '2022-10-29',
       isCompleted: false,
     },
     {
-      id: 2,
+      id: uniqid(),
       title: 'Go workout',
       description: 'Go run 5 km',
       date: '2022-10-29',
@@ -25,6 +26,7 @@ function App() {
 //use state to keep track of form data to later add it to the formData array
 const [formData, setFormData] = useState(
   {
+    id: uniqid(),
     title: '',
     description: '',
     date: '',
@@ -38,6 +40,7 @@ function handleChange (event) {
   setFormData(prevData => {
     return {
       ...prevData,
+      id: uniqid(),
       [name]: value
     }
   })
@@ -45,7 +48,9 @@ function handleChange (event) {
 
 
 function handleSubmit (event) {
-  event.preventDefault()
+  event.preventDefault();
+  setTodoData(prev => [...prev, formData])
+  console.log(formData);
 }
 
   return (

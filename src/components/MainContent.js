@@ -19,6 +19,7 @@ function MainContent (props) {
         setFormVisibility(prev => !prev)
     }
 
+
     return (
         <div className="todos">
         <div className="todo-title">To do list</div>
@@ -33,7 +34,7 @@ function MainContent (props) {
                 <input type="text" name="description" id="user-task-description" placeholder="Description" onChange={props.changeForm}/>
                 <label htmlFor="date">Due date</label>
                 <input type="date" name="date" id="user-duedate" onChange={props.changeForm}/>
-                <button id="submit-task" className="submit-task-btn" onSubmit={props.submitForm}>Submit</button>
+                <button id="submit-task" className="submit-task-btn" onClick={e => props.submitForm(e)}>Submit</button>
             </form>
         </div>
         }
