@@ -53,10 +53,10 @@ function deleteTodo (id) {
 }
 
 //add new todo to the todoData array
-function handleSubmit (event) {
-  event.preventDefault();
+function handleSubmit () {
+  //event.preventDefault();
   setTodoData(prev => [...prev, formData]);
-  
+
 }
 
   return (

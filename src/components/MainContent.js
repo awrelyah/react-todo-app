@@ -20,6 +20,12 @@ function MainContent (props) {
         setFormVisibility(prev => !prev)
     }
 
+    function clickHandler(e) {
+        e.preventDefault();
+        props.submitForm();
+        toggleForm();
+    }
+
 
     return (
         <div className="todos">
@@ -35,7 +41,7 @@ function MainContent (props) {
                 <input type="text" name="description" id="user-task-description" placeholder="Description" onChange={props.changeForm}/>
                 <label htmlFor="date">Due date</label>
                 <input type="date" name="date" id="user-duedate" onChange={props.changeForm}/>
-                <button id="submit-task" className="submit-task-btn" onClick={e => props.submitForm(e)}>Submit</button>
+                <button id="submit-task" className="submit-task-btn" onClick={(e) => clickHandler(e)}>Submit</button>
             </form>
         </div>
         }
