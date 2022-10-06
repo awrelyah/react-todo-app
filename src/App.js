@@ -46,17 +46,23 @@ function handleChange (event) {
   })
 }
 
+//filter the todos to only leave todos that don't have the same id 
+//as the clicked todo
+function deleteTodo (id) {
+  setTodoData(todoData.filter(todo => todo.id !== id));
+}
 
+//add new todo to the todoData array
 function handleSubmit (event) {
   event.preventDefault();
-  setTodoData(prev => [...prev, formData])
-  console.log(formData);
+  setTodoData(prev => [...prev, formData]);
+  
 }
 
   return (
     <div className="App">
       <Sidebar />
-      <MainContent data={todoData} submitForm={handleSubmit} changeForm={handleChange} />
+      <MainContent data={todoData} submitForm={handleSubmit} changeForm={handleChange} deleteTodo={deleteTodo} />
     </div>
   );
 }

@@ -6,8 +6,9 @@ function MainContent (props) {
     const todos = props.data.map((item) => {
         return (
             <Todo 
-            key= {item.id}
+            key = {item.id}
             {...item}
+            deleteTodo = {props.deleteTodo}
             />
         )
     });
