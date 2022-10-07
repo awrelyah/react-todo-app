@@ -9,6 +9,8 @@ function MainContent (props) {
             key = {item.id}
             {...item}
             deleteTodo = {props.deleteTodo}
+            changeTodoData = {props.changeTodoData}
+            sendEdit = {props.sendEdit}
             />
         )
     });
@@ -20,6 +22,7 @@ function MainContent (props) {
         setFormVisibility(prev => !prev)
     }
 
+    //submit form
     function clickHandler(e) {
         e.preventDefault();
         props.submitForm();
