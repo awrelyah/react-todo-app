@@ -27,8 +27,8 @@ function Todo (props) {
                     <input name='title' type='text' placeholder={props.title} onChange={(e, id) => props.changeTodoData(e, props.id)}></input> 
                     : <div className="todo-item-title">{props.title}</div>
                     }
-                    <button className="edit-item"><img src='./react-todo-app/002-editing.png' alt='edit item' onClick={() => handleEditId(props.id)}></img></button>
-                    <button className="delete-item"><img src='./react-todo-app/001-bin.png' alt='delete item' onClick={() => props.deleteTodo(props.id)}></img></button>
+                    <button className="edit-item"><img src='https://awrelyah.github.io/react-todo-app/001-bin.png' alt='edit item' onClick={() => handleEditId(props.id)}></img></button>
+                    <button className="delete-item"><img src='https://awrelyah.github.io/react-todo-app/002-editing.png' alt='delete item' onClick={() => props.deleteTodo(props.id)}></img></button>
                 </div>
                 <div className='todo-second-row'>
                     {editId === props.id ? 
