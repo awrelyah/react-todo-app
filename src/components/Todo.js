@@ -23,10 +23,11 @@ function Todo (props) {
     handleEditId();
     }
 
-
 //i couldnt figure out how to maintain default value to input fields so i added a placeholder
     return (
-        <div>
+        <div key={props.id}>
+            {props.isShowing &&
+
             <div className={isComplete ? 'todo-item item-complete' : 'todo-item'}>
                 <div className="todo-first-row">
                     <input type="checkbox" className="checkitem" name="checkitem" onChange={toggleComplete}></input>
@@ -50,6 +51,7 @@ function Todo (props) {
                     {editId === props.id  && <button onClick={(e) => editHandler(e)} >OK</button>}
                 </div>
             </div>
+        }
         </div>
     )
 }

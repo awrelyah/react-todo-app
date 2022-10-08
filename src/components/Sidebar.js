@@ -1,12 +1,12 @@
-function Sidebar () {
-    return (
+function Sidebar (props) {
+ return (
     <div className="nav">
         <div className="nav-items">
-            <div className="nav-item">Home</div>
+            <button className="nav-item" id='all' onClick={(e) => props.toggleTodos(e.target.id)}>Home</button>
             <div className="nav-title">Due Date</div>
-            <div className="nav-item">Today</div>
-            <div className="nav-item">Week</div>
-            <div className="nav-item">Month</div>
+            <button className="nav-item" id='today' onClick={(e) => props.toggleTodos(e.target.id)}>Today</button>
+            <button className="nav-item" id='week' onClick={(e) => props.toggleTodos(e.target.id)}>Week</button>
+            <button className="nav-item" id='month' onClick={(e) => props.toggleTodos(e.target.id)}>Month</button>
         </div>
 
     </div>
