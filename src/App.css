@@ -219,3 +219,14 @@ button:active,
 .delete-item:hover{
     background-color: rgba(255, 255, 255, 0.0);
 } 
+
+@media only screen  and (max-width: 700px){
+    .App {
+        width:100vw;
+        height:100vh;
+        border-radius: 0;
+    }
+    .nav{
+        border-radius: 0;
+    }
+}
