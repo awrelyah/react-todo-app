@@ -1,14 +1,10 @@
-//import editlogo from '../002-editing.png';
-//import deletelogo from '../001-bin.png';
 import {useState} from 'react';
 
 function Todo (props) {
     //use state to keep track which todo is currently being edited
     const [editId, setEditId] = useState(null)
-
     //use state to keep track which todo is complete
     const [isComplete, setIsComplete] = useState(false);
-
     //use state to keep track of the todo that is currently being edited
     const [editData, setEditData] = useState (
     {
@@ -19,7 +15,7 @@ function Todo (props) {
       isShowing: true
     }
   )
-//save all edit changes to state
+    //save all edit changes to state
     function changeTodoData(event, todoId){
         const {name, value} = event.target;
         setEditData(prev => {
@@ -30,21 +26,17 @@ function Todo (props) {
         }
         })
         }
-    function toggleComplete () {
-        setIsComplete(prev => !prev)
+
+    const toggleComplete = () => setIsComplete(prev => !prev);
+
+    const handleEditId = (i)  => editId ? setEditId(null) : setEditId(i);
+
+    //submit changes
+    const editHandler = () => {
+        props.sendEdit(editData);
+        handleEditId();
     }
 
-    function handleEditId(i){
-        editId ? setEditId(null) : setEditId(i);
-    }
-
- //submit changes
-  function editHandler (){
-    props.sendEdit(editData);
-    handleEditId();
-    }
-
-//i couldnt figure out how to maintain default value to input fields so i added a placeholder
     return (
         <div key={props.id}>
             {props.isShowing &&
