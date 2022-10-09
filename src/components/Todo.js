@@ -9,6 +9,27 @@ function Todo (props) {
     //use state to keep track which todo is complete
     const [isComplete, setIsComplete] = useState(false);
 
+    //use state to keep track of the todo that is currently being edited
+    const [editData, setEditData] = useState (
+    {
+      id: props.id,
+      title: props.title,
+      description: props.description,
+      date: props.date,
+      isShowing: true
+    }
+  )
+//save all edit changes to state
+    function changeTodoData(event, todoId){
+        const {name, value} = event.target;
+        setEditData(prev => {
+        return {
+            ...prev,
+            id: todoId,
+            [name]: value,
+        }
+        })
+        }
     function toggleComplete () {
         setIsComplete(prev => !prev)
     }
@@ -18,8 +39,8 @@ function Todo (props) {
     }
 
  //submit changes
-  function editHandler (e){
-    props.sendEdit(e);
+  function editHandler (){
+    props.sendEdit(editData);
     handleEditId();
     }
 
@@ -32,7 +53,7 @@ function Todo (props) {
                 <div className="todo-first-row">
                     <input type="checkbox" className="checkitem" name="checkitem" onChange={toggleComplete}></input>
                     {editId === props.id ? 
-                    <input name='title' type='text' placeholder={props.title} onChange={(e, id) => props.changeTodoData(e, props.id)}></input> 
+                    <input name='title' type='text' value={editData.title} onChange={(e, id) => changeTodoData(e, props.id)}></input> 
                     : <div className={isComplete? 'todo-item-title text-complete' : 'todo-item-title'}>{props.title}</div>
                     }
                     <button className="edit-item"><img  src='https://awrelyah.github.io/react-todo-app/002-editing.png' alt='edit item' onClick={() => handleEditId(props.id)}></img></button>
@@ -40,15 +61,15 @@ function Todo (props) {
                 </div>
                 <div className='todo-second-row'>
                     {editId === props.id ? 
-                    <input name='description' type='text' placeholder={props.description} onChange={(e,id) => props.changeTodoData(e, props.id)}></input> 
+                    <input name='description' type='text' value={editData.description} onChange={(e,id) => changeTodoData(e, props.id)}></input> 
                     : <div className={isComplete ? 'todo-description text-complete' : 'todo-description'}>{props.description}</div> 
                     }
 
                     {editId === props.id ? 
-                    <input className='todo-date' name='date' type='date' onChange={(e,id) => props.changeTodoData(e, props.id)}></input>
+                    <input className='todo-date' name='date' type='date' value={editData.date} onChange={(e,id) => changeTodoData(e, props.id)}></input>
                     : <div className='todo-date'>{props.date}</div>
                     }
-                    {editId === props.id  && <button onClick={(e) => editHandler(e)} >OK</button>}
+                    {editId === props.id  && <button onClick={editHandler} >OK</button>}
                 </div>
             </div>
         }

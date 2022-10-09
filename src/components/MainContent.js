@@ -9,7 +9,6 @@ function MainContent (props) {
             key = {item.id}
             {...item}
             deleteTodo = {props.deleteTodo}
-            changeTodoData = {props.changeTodoData}
             sendEdit = {props.sendEdit}
             />
         )
