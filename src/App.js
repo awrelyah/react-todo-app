@@ -1,7 +1,7 @@
 import './App.css';
 import {Sidebar} from './components/Sidebar'
 import {MainContent} from './components/MainContent'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import uniqid from 'uniqid'
 import {isSameMonth, isSameWeek} from 'date-fns'
 
@@ -26,13 +26,21 @@ function App() {
   //use state to keep track of form data to later add it to the formData array
   const [formData, setFormData] = useState(
     {
-      id: uniqid(),
-      title: '',
-      description: '',
-      date: '',
-      isShowing: true
+      id: JSON.parse(localStorage.getItem('id')) || '',
+      title: JSON.parse(localStorage.getItem('title')) || '',
+      description: JSON.parse(localStorage.getItem('description')) || '',
+      date: JSON.parse(localStorage.getItem('date')) || '',
+      isShowing: JSON.parse(localStorage.getItem('isShowing')) || ''
     }
   )
+//i want to save to localstorage but IDK HOW YET STILL WORKING ON IT
+  useEffect(() => {
+    localStorage.setItem("id", JSON.stringify(uniqid()));
+    localStorage.setItem("title", JSON.stringify(formData.title));
+    localStorage.setItem("description", JSON.stringify(formData.description));
+    localStorage.setItem("date", JSON.stringify(formData.date));
+    localStorage.setItem("isShowing", JSON.stringify(formData.isShowing));
+  }, [formData]);
 
   //after clicking OK, replace old todo with new edited todo
   function sendEdit(data){
@@ -60,7 +68,7 @@ function App() {
   }
 
   //add new todo to the todoData array
-  function handleSubmit () {
+  function submitForm () {
     setTodoData(prev => [...prev, formData]);
   }
 
@@ -97,7 +105,7 @@ function App() {
 
       <MainContent 
       data={todoData} 
-      submitForm={handleSubmit} 
+      submitForm={submitForm} 
       changeForm={handleChange} 
       deleteTodo={deleteTodo} 
       sendEdit={sendEdit}

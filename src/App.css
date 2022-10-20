@@ -89,6 +89,7 @@ body{
     border-radius: 20px;
     justify-content: center;
     margin-bottom: 8px;
+    transition: all 0.3s;
 }
 .todo-item-title{
     font-weight: 600;
@@ -183,6 +184,7 @@ form{
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    transition: display 1s;
 }
 
 p{
@@ -216,6 +218,9 @@ form label{
     color: grey;
 }
 
+button{
+    transition: all 0.5s ease-out;
+}
 button:hover,
 #submit-task:hover,
 .nav-item:hover{
